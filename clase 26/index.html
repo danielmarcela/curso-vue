@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+	<title>VueJs</title>
+	<link rel="stylesheet" href="">
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div class="demo" :style="{backgroundColor: color}"></div>
+		<div class="demo" :style="myStyle"></div>
+		<div class="demo" :style="[myStyle, {height: width + 'px'}]"></div>
+		<hr>
+		<input type="text" v-model="color">
+		<input type="text" v-model="width">
+	</div>
+<script>
+	// Put this in the script section in JSFiddle
+	// In a local setup, you need to merge this and the index.html file into one file
+	new Vue({
+		el: '#app',
+		data: {
+			color: 'gray',
+			width: 100
+		},
+		computed: {
+			myStyle: function () {
+				return {
+					backgroundColor: this.color,
+					width: this.width + 'px'
+				};
+			}
+		}
+	});
+</script>
+</body>
+
+<style>
+	.demo {
+		width: 100px;
+		height: 100px;
+		background-color: gray;
+		display: inline-block;
+		margin: 10px;
+	}
+</style>
+</html>
+
