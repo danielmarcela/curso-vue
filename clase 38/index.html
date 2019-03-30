@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+	<title>VueJs</title>
+	<link rel="stylesheet" href="">
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<ul>
+			<li v-for="(ingridient, index) in ingridients" :key="ingridient">{{ ingridient }} ({{ index }})</li>
+		</ul>
+		<button @click="ingridients.push('spices')" type="button" name="button">Add New</button>
+		<hr>
+		<ul>
+			<li v-for="person in persons">
+				<div v-for="(value, key, index) in person"> {{ key }}: {{ value }} ({{ index }})</div>
+			</li>
+		</ul>
+		<span v-for="n in 10">{{ n }}</span>
+		<hr>
+			<template v-for="(ingridient, index) in ingridients">
+				<h1>{{ ingridient }}</h1>
+				<p>{{ index }}</p>
+			</template>
+	</div>
+<script>
+	// Put this in the script section in JSFiddle
+	// In a local setup, you need to merge this and the index.html file into one file
+	new Vue({
+		el: '#app',
+		data: {
+			ingridients: ['meat', 'fruit', 'cookies'],
+			persons: [
+				{name: 'Max', age: 27, color: 'red'},
+				{name: 'Anna', age: 'unknown', color: 'blue'}
+			]
+		}
+	});
+</script>
+</body>
+
+<style>
+	.demo {
+		width: 100px;
+		height: 100px;
+		background-color: gray;
+		display: inline-block;
+		margin: 10px;
+	}
+</style>
+</html>
