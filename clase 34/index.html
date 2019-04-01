@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+	<title>VueJs</title>
+	<link rel="stylesheet" href="">
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p v-if="show">You can see me <span>Hello!</span></p>
+		<p v-else>Now you see me!</p>
+		<template v-if="show">
+			<h1>Heading</h1>
+			<p>Inside a template</p>
+		</template>
+		<p v-show="show">Do you also see me?</p>
+		<button @click="show = !show" type="button" name="button">Switch</button>
+	</div>
+<script>
+	// Put this in the script section in JSFiddle
+	// In a local setup, you need to merge this and the index.html file into one file
+	new Vue({
+		el: '#app',
+		data: {
+			show: true
+		}
+	});
+</script>
+</body>
+
+<style>
+	.demo {
+		width: 100px;
+		height: 100px;
+		background-color: gray;
+		display: inline-block;
+		margin: 10px;
+	}
+</style>
+</html>
