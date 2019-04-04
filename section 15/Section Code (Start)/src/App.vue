@@ -13,6 +13,8 @@
                 </div>
                 <button class="btn btn-primary" @click="submit">Submit</button>
                 <hr>
+                <input class="form-control" type="text" v-model="node">
+                <br><br>
                 <button class="btn btn-primary" @click="fetchData">Get Data</button>
                 <br><br>
                 <ul class="list-group">
@@ -32,7 +34,8 @@
                     email: ''
                 },
                 users: [],
-                resource: ''
+                resource: {},
+                node: 'data'
             }
         },
         methods: {
@@ -43,13 +46,24 @@
                 //     }, error => {
                 //         console.log(error);
                 //     });
-                // this.resource.save({}, this.user);
+                // this.resource.save({}, this.user); //El primer paramatro es lo que le queremos pasar a la URL, el otro lo que queremos guardar
                 this.resource.saveAlt(this.user);
             },
             fetchData(){
-                this.$http.get('data.json')
+                // this.$http.get('data.json')
+                //     .then(response => {
+                //          return response.json();
+                //     })
+                //     .then(data => {
+                //         const resultArray = [];
+                //         for (let key in data){
+                //             resultArray.push(data[key]);
+                //         }
+                //         this.users = resultArray;
+                //     });
+                this.resource.getData({node: this.node})
                     .then(response => {
-                         return response.json();
+                        return response.json();
                     })
                     .then(data => {
                         const resultArray = [];
@@ -62,11 +76,12 @@
         },
         created() {
             const customActions = {
-                saveAlt: {method: 'POST', url: 'alternative.json'}
+                saveAlt: {method: 'POST', url: 'alternative.json'},
+                getData: {method: 'GET'}
             };
             //El segundo argumento nos permite pasarle parametros variables a la URL y el 3º son
             //las acciones customizadas
-            this.resource = this.$resource('data.json', {}, customActions);
+            this.resource = this.$resource('{node}.json', {}, customActions);
         }
     }
 </script>
